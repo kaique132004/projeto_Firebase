@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta>
+    <title>Autenticação com Firebase</title>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <h1>Autenticação com Firebase</h1>
+
+    <div id="login-container">
+        <button id="login-button">Login</button>
+        <button id="logout-button">Logout</button>
+    </div>
+
+    <div>
+        <input type="email" name="email" id="email">
+        <input type="password" name="senha" id="senha">
+        <button id="login_senha">Logar</button>
+    </div>
+
+    <script>
+
+        fetch('api.json').then(res => res.json()).then(data => {
+            const apiKey = data.apiKey;
+            const authDomain = data.authDomain;
+            const databaseURL = data.databaseURL;
+            const projectId = data.projectId;
+            const storageBucket = data.storageBucket;
+            const messagingSenderId = data.messagingSenderId;
+            const appId = data.appId;
+
+            var firebaseConfig = {
+                apiKey: apiKey,
+                authDomain: authDomain,
+                databaseURL: databaseURL,
+                projectId: projectId,
+                storageBucket: storageBucket,
+                messagingSenderId: messagingSenderId,
+                appId: appId
+            };
+
+            // Inicialize o Firebase
+            firebase.initializeApp(firebaseConfig);
+
+        }).catch(error => {
+            console.error("Lista com as credenciais vazias ou invalidas, cod: \n", error);
+        });
+
+
+    </script>
+
+</body>
+
+</html>
